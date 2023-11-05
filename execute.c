@@ -20,26 +20,26 @@ return (buffer);
  */
 void execute_command(char *buffer)
 {
-char *args[BUFFER_SIZE / 2];
-pid_t pid = fork();
+	char *args[BUFFER_SIZE / 2];
+	pid_t pid = fork();
 
-if (pid < 0)
-{
-perror("fork() error");
-exit(EXIT_FAILURE);
-}
-else if (pid == 0)
-{
-args[0] = buffer;
-args[1] = NULL;
+	if (pid < 0)
+	{
+		perror("fork() error");
+		exit(EXIT_FAILURE);
+	}
+	else if (pid == 0)
+	{
+		args[0] = buffer;
+		args[1] = NULL;
 
-execvp(args[0], args);
+		execvp(args[0], args);
 
-perror("execvp() error");
-exit(EXIT_FAILURE);
-}
-else
-{
-wait(NULL);
-}
+		perror("execvp() error");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		wait(NULL);
+	}
 }

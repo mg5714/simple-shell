@@ -7,18 +7,20 @@
  */
 int main(void)
 {
-size_t buff_size = BUFFER_SIZE;
-char buffer[BUFFER_SIZE];
-void pprint(const char *format);
+	size_t buff_size = BUFFER_SIZE;
+	char buffer[BUFFER_SIZE];
 
-_prompt();
-while (1)
-{
-read_line(buffer, buff_size);
-remove_newline(buffer);
-execute_command(buffer);
+	void pprint(const char *format);
 
-_prompt();
-}
-return (0);
+	_prompt();
+
+	while (1)
+	{
+		read_line(buffer, buff_size);
+		remove_newline(buffer);
+		execute_command(buffer);
+
+		_prompt();
+	}
+	return (0);
 }
