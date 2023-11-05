@@ -1,0 +1,26 @@
+#ifndef SHELL_H
+#define SHELL_H
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/wait.h>
+#include <stddef.h>
+
+#define BUFFER_SIZE 1024
+/* #define PROMPT "simple_shell$ " */
+
+/* #define PROMPT ">> " */
+
+void *remove_newline(char *buffer);
+void execute_command(char *buffer);
+
+void _prompt(void);
+/* void read_line(char *args[]); */
+void pprint(const char *format);
+int _strlen(const char *s);
+void read_line(char *buffer, size_t buff_size);
+/* void execute(char *buffer); */
+
+#endif
