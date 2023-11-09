@@ -12,7 +12,7 @@
 /* #define PROMPT ">> " */
 
 void *remove_newline(char *buffer);
-void execute_command(char *buffer);
+void execute_command(char *buffer, char **argv);
 void _prompt(void);
 /* void read_line(char *args[]); */
 void pprint(const char *format);
