@@ -9,18 +9,18 @@
 #include <stddef.h>
 
 #define BUFFER_SIZE 1024
-/* #define PROMPT "simple_shell$ " */
-
 /* #define PROMPT ">> " */
 
 void *remove_newline(char *buffer);
 void execute_command(char *buffer);
-
 void _prompt(void);
 /* void read_line(char *args[]); */
 void pprint(const char *format);
 int _strlen(const char *s);
 void read_line(char *buffer, size_t buff_size);
+char **argsarray(char *buffer);
+char *_strncpy(char *dest, char *src, int n);
+char *_strncat(char *dest, char *src, int n);
 /* void execute(char *buffer); */
 
 #endif

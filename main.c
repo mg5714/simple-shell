@@ -10,8 +10,6 @@ int main(void)
 	size_t buff_size = BUFFER_SIZE;
 	char buffer[BUFFER_SIZE];
 
-	void pprint(const char *format);
-
 	_prompt();
 
 	while (1)

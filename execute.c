@@ -21,6 +21,7 @@ return (buffer);
 void execute_command(char *buffer)
 {
 	char *args[BUFFER_SIZE / 2];
+	char **argss = argsarray(buffer);
 	pid_t pid = fork();
 
 	if (pid < 0)
@@ -33,7 +34,7 @@ void execute_command(char *buffer)
 		args[0] = buffer;
 		args[1] = NULL;
 
-		execvp(args[0], args);
+		execvp(argss[0], argss);
 
 		perror("execvp() error");
 		exit(EXIT_FAILURE);
