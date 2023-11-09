@@ -1,10 +1,10 @@
 #include "shell.h"
 
- /** 
-  * argsarray - seperate the buffer input to arg array
-  * @buffer: pointer to the buffer
-  * Return: array of arguments
-  */
+/**
+ * argsarray - seperate the buffer input to arg array
+ * @buffer: pointer to the buffer
+ * Return: array of arguments
+ */
 char **argsarray(char *buffer)
 {
 	char **args = (char **) malloc(sizeof(char) * 64 * 512);
@@ -24,8 +24,8 @@ char **argsarray(char *buffer)
 			p++;
 			sp = i + 1;
 			n = 0;
-        }
-    }
+		}
+	}
 	if (n > 0)
 	{
 		args[p] = (char *) malloc(sizeof(char) * n);

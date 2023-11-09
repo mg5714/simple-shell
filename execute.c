@@ -13,18 +13,19 @@ char *bincmd(char *cmd)
 	bin = "/bin/";
 	p1 = command;
 	p2 = bin;
-	
 	while (*p2 != '\0')
 	{
 		*p1 = *p2;
-		p1++; p2++;
+		p1++;
+		p2++;
 	}
 
 	p2 = cmd;
 	while (*p2 != '\0')
 	{
 		*p1 = *p2;
-		p1++; p2++;
+		p1++;
+		p2++;
 	}
 	*p1 = '\0';
 	return (command);
@@ -46,7 +47,7 @@ return (buffer);
 /**
  * execute_command - executes a command
  * @buffer: buffer with the command to execute
- *
+ * @argv: array of command line arguments
  * Return: void
  */
 void execute_command(char *buffer, char **argv)
