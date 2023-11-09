@@ -21,6 +21,7 @@ void read_line(char *buffer, size_t buff_size);
 char **argsarray(char *buffer);
 char *_strncpy(char *dest, char *src, int n);
 char *_strncat(char *dest, char *src, int n);
+char *_strcat(char *dest, char *src);
 /* void execute(char *buffer); */
 
 #endif
