@@ -1,4 +1,4 @@
-#include "shell.h"
+ #include "shell.h"
 
 /**
  * remove_newline - removes newline character from string
@@ -34,8 +34,9 @@ args[0] = buffer;
 args[1] = NULL;
 
 execvp(args[0], args);
+ /* execve(args[0], args, NULL); */
 
-perror("execvp() error");
+perror("execve() error");
 exit(EXIT_FAILURE);
 }
 else
