@@ -7,7 +7,7 @@
  */
 char **argsarray(char *buffer)
 {
-	char **args = (char **) malloc(sizeof(char) * 64 * 512);
+  char **args = (char **) malloc(sizeof(char *) * 64 * 512);
 	int i, p, n, sp;
 
 	i = p = n = sp = 0;
@@ -19,7 +19,7 @@ char **argsarray(char *buffer)
 		}
 		else
 		{
-			args[p] = (char *) malloc(sizeof(char) * n);
+		        args[p] = (char *) malloc(sizeof(char) * n);
 			args[p] = _strncpy(args[p], &buffer[sp], n);
 			p++;
 			sp = i + 1;
@@ -28,7 +28,7 @@ char **argsarray(char *buffer)
 	}
 	if (n > 0)
 	{
-		args[p] = (char *) malloc(sizeof(char) * n);
+	        args[p] = (char *) malloc(sizeof(char) * n);
 		args[p] = _strncpy(args[p], &buffer[sp], n);
 		p++;
 	}
