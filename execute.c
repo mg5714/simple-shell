@@ -52,9 +52,12 @@ return (buffer);
  */
 void execute_command(char *buffer, char **argv)
 {
-	char **argss = argsarray(buffer);
+	char *args[BUFFER_SIZE / 2];
 	pid_t pid = fork();
+	char *token, *path;
+	int i;
 
+	i = 0;
 	if (pid < 0)
 	{
 		perror("fork() error");
@@ -62,10 +65,27 @@ void execute_command(char *buffer, char **argv)
 	}
 	else if (pid == 0)
 	{
-		execve(argss[0], argss, NULL);
-
-		perror(argv[0]);
-		exit(EXIT_FAILURE);
+		token = strtok(buffer, " ");
+		while (token != NULL)
+		{
+			args[i++] = token;
+			token = strtok(NULL, " ");
+		}
+		args[i] = NULL;
+		path = get_path(args[0]);
+		if (path != NULL)
+		{
+			if (execve(args[0], args, environ) == -1)
+			{
+				perror(args[0]);
+				exit(EXIT_FAILURE);
+			}
+		}
+		else
+		{
+			printf("Command not found: %s\n", args[0]);
+		}
+			
 	}
 	else
 	{
