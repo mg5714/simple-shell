@@ -6,5 +6,6 @@
  */
 void _prompt(void)
 {
-pprint ("simple_Hell ~$");
+    char *prompt = "$ ";
+    write(STDOUT_FILENO, prompt, _strlen(prompt));
 }
