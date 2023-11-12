@@ -50,7 +50,7 @@ return (buffer);
  * @argv: array of command line arguments
  * Return: void
  */
-void execute_command(char *buffer, char **argv)
+void execute_command(char *buffer)
 {
 	char *args[BUFFER_SIZE / 2];
 	pid_t pid = fork();

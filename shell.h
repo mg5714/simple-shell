@@ -16,7 +16,7 @@ extern char **environ;
 
 void read_line(char *buffer, size_t buff_size);
 void *remove_newline(char *buffer);
-void execute_command(char *buffer, char **argv);
+void execute_command(char *buffer);
 void check_exit(char *buffer);
 void argo(int argc, char* argv[]);
 char *_getenv(char *var);
@@ -28,6 +28,8 @@ int _strlen(const char *s);
 void read_line(char *buffer, size_t buff_size);
 char **argsarray(char *buffer);
 char *_strncpy(char *dest, char *src, int n);
+char *_strcpy(char *dest, char *src);
+
 char *_strncat(char *dest, char *src, int n);
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);

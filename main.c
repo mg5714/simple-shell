@@ -3,11 +3,9 @@
 
 /**
  * main - entry point.
- * @argc: number of command line arguments
- * @argv: array of command line arguments
  * Return: 0 on success
  */
-int main(int argc, char **argv)
+int main(void)
 {
 	size_t buff_size = BUFFER_SIZE;
 	char buffer[BUFFER_SIZE];
@@ -27,7 +25,7 @@ int main(int argc, char **argv)
 			print_env();
 		}
 		else
-			execute_command(buffer, argv);
+			execute_command(buffer);
 
 		_prompt();
 	}
