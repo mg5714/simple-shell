@@ -19,7 +19,13 @@ int main(int argc, char **argv)
 	{
 		read_line(buffer, buff_size);
 		remove_newline(buffer);
-		execute_command(buffer, argv);
+		check_exit(buffer);
+		if (strcmp(strtok(buffer, " "), "env") == 0)
+		{
+			print_env();
+		}
+		else
+			execute_command(buffer, argv);
 
 		_prompt();
 	}
