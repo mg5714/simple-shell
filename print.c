@@ -8,7 +8,7 @@
  */
 void pprint(const char *format)
 {
-write(STDOUT_FILENO, format, _strlen(format));
+	write(STDOUT_FILENO, format, _strlen(format));
 }
 
 
@@ -20,9 +20,10 @@ write(STDOUT_FILENO, format, _strlen(format));
  */
 int _strlen(const char *s)
 {
-int i;
-for (i = 0; *s != '\0'; s++)
-i++;
-return (i);
+	int i;
+
+	for (i = 0; *s != '\0'; s++)
+		i++;
+	return (i);
 }
   

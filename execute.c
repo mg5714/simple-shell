@@ -1,6 +1,38 @@
  #include "shell.h"
 
 /**
+ * bincmd - add /bin/ prefix to the command name
+ * @cmd: command name
+ * Return: /bin/cmd
+ */
+char *bincmd(char *cmd)
+{
+	char *command, *bin, *p1, *p2;
+
+	command = malloc(sizeof(char) * 16);
+	bin = "/bin/";
+	p1 = command;
+	p2 = bin;
+	while (*p2 != '\0')
+	{
+		*p1 = *p2;
+		p1++;
+		p2++;
+	}
+
+	p2 = cmd;
+	while (*p2 != '\0')
+	{
+		*p1 = *p2;
+		p1++;
+		p2++;
+	}
+	*p1 = '\0';
+	return (command);
+
+}
+
+/**
  * remove_newline - removes newline character from string
  * @buffer: string
  *
@@ -15,32 +47,28 @@ return (buffer);
 /**
  * execute_command - executes a command
  * @buffer: buffer with the command to execute
- *
+ * @argv: array of command line arguments
  * Return: void
  */
-void execute_command(char *buffer)
+void execute_command(char *buffer, char **argv)
 {
-char *args[BUFFER_SIZE / 2];
-pid_t pid = fork();
+	char **argss = argsarray(buffer);
+	pid_t pid = fork();
 
-if (pid < 0)
-{
-perror("fork() error");
-exit(EXIT_FAILURE);
-}
-else if (pid == 0)
-{
-args[0] = buffer;
-args[1] = NULL;
+	if (pid < 0)
+	{
+		perror("fork() error");
+		exit(EXIT_FAILURE);
+	}
+	else if (pid == 0)
+	{
+		execve(argss[0], argss, NULL);
 
-execvp(args[0], args);
- /* execve(args[0], args, NULL); */
-
-perror("execve() error");
-exit(EXIT_FAILURE);
-}
-else
-{
-wait(NULL);
-}
+		perror(argv[0]);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		wait(NULL);
+	}
 }

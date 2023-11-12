@@ -6,5 +6,5 @@
  */
 void _prompt(void)
 {
-pprint ("simple_Hell ~$");
+	pprint("($)");
 }
