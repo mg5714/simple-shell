@@ -18,7 +18,6 @@ void read_line(char *buffer, size_t buff_size);
 void *remove_newline(char *buffer);
 void execute_command(char *buffer);
 void check_exit(char *buffer);
-void argo(int argc, char* argv[]);
 char *_getenv(char *var);
 char *get_path(char *cmd);
 void _prompt(void);
@@ -33,8 +32,7 @@ char *_strcpy(char *dest, char *src);
 char *_strncat(char *dest, char *src, int n);
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
-void print_env();
-/* void execute(char *buffer); */
+void print_env(void);
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
 #endif

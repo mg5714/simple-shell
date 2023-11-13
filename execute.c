@@ -47,7 +47,6 @@ return (buffer);
 /**
  * execute_command - executes a command
  * @buffer: buffer with the command to execute
- * @argv: array of command line arguments
  * Return: void
  */
 void execute_command(char *buffer)
@@ -85,7 +84,8 @@ void execute_command(char *buffer)
 		{
 			printf("Command not found: %s\n", args[0]);
 		}
-			
+
+	
 	}
 	else
 	{

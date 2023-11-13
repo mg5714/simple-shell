@@ -6,6 +6,7 @@
  */
 void _prompt(void)
 {
-    char *prompt = "$ ";
-    write(STDOUT_FILENO, prompt, _strlen(prompt));
+	char *prompt = "$ ";
+
+	write(STDOUT_FILENO, prompt, _strlen(prompt));
 }
