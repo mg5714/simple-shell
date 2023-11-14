@@ -1,6 +1,7 @@
 #include "shell.h"
 
 void print_env(void);
+
 /**
  * check_builtins - check for built in commands
  * @buffer: pointer to the shell buffer
@@ -18,7 +19,7 @@ void check_builtins(char *buffer)
 		if (_strcmp((buffer + i), "env") == 0)
 		{
 			print_env();
-			exit(EXIT_SUCCESS);
+			return;
 		}
 
 		if (_strcmp(buffer + i, "exit") == 0)
@@ -30,6 +31,10 @@ void check_builtins(char *buffer)
 	}
 }
 
+/**
+ * print_env - print the enviroment variables line by line
+ * Return: void
+ */
 void print_env(void)
 {
 	int i;

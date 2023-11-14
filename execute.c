@@ -9,7 +9,7 @@
 void *remove_newline(char *buffer)
 {
 	char *p;
-	
+
 	p = buffer;
 	while (*p != '\0')
 		p++;
@@ -23,15 +23,32 @@ void *remove_newline(char *buffer)
 /**
  * execute_command - executes a command
  * @buffer: buffer with the command to execute
+ * @argv: array of command line arguments
  * Return: void
  */
 void execute_command(char *buffer, char **argv)
 {
 	char *args[BUFFER_SIZE / 2];
-	pid_t pid = fork();
+	pid_t pid;
 	char *token, *path;
 	int i;
 
+	i = 0;
+	token = strtok(buffer, " ");
+	while (token != NULL)
+	{
+		args[i++] = token;
+		token = strtok(NULL, " ");
+	}
+	args[i] = NULL;
+	path = get_path(args[0]);
+
+	if (!path)
+	{
+		printf("Command not found: %s\n", args[0]);
+		return;
+	}
+	pid = fork();
 	if (pid < 0)
 	{
 		perror("fork() error");
@@ -39,30 +56,11 @@ void execute_command(char *buffer, char **argv)
 	}
 	else if (pid == 0)
 	{
-		i = 0;
-		token = strtok(buffer, " ");
-		while (token != NULL)
+		if (execve(path, args, environ) == -1)
 		{
-			args[i++] = token;
-			token = strtok(NULL, " ");
+			perror(argv[0]);
+			exit(EXIT_FAILURE);
 		}
-		args[i] = NULL;
-		path = get_path(args[0]);
-
-		if (path != NULL)
-		{
-			if (execve(path, args, environ) == -1)
-			{
-				perror(argv[0]);
-				exit(EXIT_FAILURE);
-			}
-		}
-		else
-		{
-			printf("Command not found: %s\n", args[0]);
-		}
-
-	
 	}
 	else
 	{
