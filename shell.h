@@ -21,6 +21,7 @@ void check_exit(char *buffer);
 char *_getenv(char *var);
 char *get_path(char *cmd);
 void _prompt(void);
+void check_builtins(char *buffer);
 
 void pprint(const char *format);
 int _strlen(const char *s);
@@ -35,5 +36,7 @@ int _strcmp(char *s1, char *s2);
 void print_env(void);
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
+char *_strsep(char **stringp, const char *delim);
 char *_strpbrk(const char* str, const char* accept);
+int _isalpha(int c);
 #endif
