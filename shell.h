@@ -16,7 +16,7 @@ extern char **environ;
 
 void read_line(char *buffer, size_t buff_size);
 void *remove_newline(char *buffer);
-void execute_command(char *buffer);
+void execute_command(char *buffer, char **argv);
 void check_exit(char *buffer);
 char *_getenv(char *var);
 char *get_path(char *cmd);
@@ -35,4 +35,5 @@ int _strcmp(char *s1, char *s2);
 void print_env(void);
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
+char *_strpbrk(const char* str, const char* accept);
 #endif

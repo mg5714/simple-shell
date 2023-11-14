@@ -49,7 +49,7 @@ return (buffer);
  * @buffer: buffer with the command to execute
  * Return: void
  */
-void execute_command(char *buffer)
+void execute_command(char *buffer, char **argv)
 {
 	char *args[BUFFER_SIZE / 2];
 	pid_t pid = fork();
@@ -74,9 +74,9 @@ void execute_command(char *buffer)
 		path = get_path(args[0]);
 		if (path != NULL)
 		{
-			if (execve(args[0], args, environ) == -1)
+			if (execve(path, args, environ) == -1)
 			{
-				perror(args[0]);
+				perror(argv[0]);
 				exit(EXIT_FAILURE);
 			}
 		}

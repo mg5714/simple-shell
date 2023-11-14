@@ -5,7 +5,7 @@
  * main - entry point.
  * Return: 0 on success
  */
-int main(void)
+int main(int argc, char **argv)
 {
 	size_t buff_size = BUFFER_SIZE;
 	char buffer[BUFFER_SIZE];
@@ -25,9 +25,11 @@ int main(void)
 			print_env();
 		}
 		else
-			execute_command(buffer);
+			execute_command(buffer, argv);
 
 		_prompt();
 	}
+	if (argc)
+	{}
 	return (0);
 }
