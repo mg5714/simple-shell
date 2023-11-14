@@ -39,6 +39,7 @@ char *get_path(char *cmd)
 				free(path);
 				return (path_copy);
 			}
+			
 			free(path_copy);
 			path_copy = NULL;
 		}
