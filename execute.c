@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #include "shell.h"
+=======
+ #include "shell.h"
+>>>>>>> b9b50b40ea1c0688012c8e3a11aad9aef8b9c6c2
 
 /**
  * remove_newline - removes newline character from string

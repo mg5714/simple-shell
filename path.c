@@ -41,8 +41,8 @@ char *get_path(char *cmd)
 			}
 			free(path_copy);
 			path_copy = NULL;
-			dir = strtok(NULL, ":");
 		}
+		dir = strtok(NULL, ":");
 	}
 		free(path);
 		return (NULL);
