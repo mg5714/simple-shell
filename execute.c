@@ -8,13 +8,10 @@
  */
 void *remove_newline(char *buffer)
 {
-	char *p;
+	char *p = buffer;
 
-	p = buffer;
-	while (*p != '\0')
+	while (*p != 10)
 		p++;
-	while (*p != '\n')
-		p--;
 
 	*p = '\0';
 	return (buffer);
