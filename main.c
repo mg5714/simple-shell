@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 	{
 		read_line(buffer, buff_size);
 		remove_newline(buffer);
-		printf("BUFFER: [%s]\n", buffer);
+		/* printf("BUFFER: [%s]\n", buffer); */
 		check_builtins(buffer);
 		execute_command(buffer, argv);
 	}
