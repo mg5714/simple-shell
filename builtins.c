@@ -10,7 +10,7 @@ int getstatus(int coef, char *buffer);
  */
 void check_builtins(char *buffer)
 {
-	int i, status;
+	int i, status = EXIT_SUCCESS;
 	char *token;
 
 	token = _strtok(buffer, " ");
@@ -26,8 +26,9 @@ void check_builtins(char *buffer)
 		{
 			/* status % 256 */
 			token = _strtok(NULL, " ");
-			status = _atoi(token);
-			exit(status % 256;
+			if (token)
+				status = _atoi(token);
+			exit(status % 256);
 		}
 
 		return;

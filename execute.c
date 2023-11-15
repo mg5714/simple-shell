@@ -1,4 +1,4 @@
- #include "shell.h"
+#include "shell.h"
 
 /**
  * remove_newline - removes newline character from string
@@ -64,6 +64,7 @@ void execute_command(char *buffer, char **argv)
 	}
 	else
 	{
+	  free(path);
 		wait(NULL);
 	}
 }
