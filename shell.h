@@ -14,7 +14,7 @@ extern char **environ;
 #define BUFFER_SIZE 1024
 #define PROMPT "$ "
 
-void read_line(char *buffer, size_t buff_size);
+void read_line(char *buffer, size_t buff_size, char **args);
 void *remove_newline(char *buffer);
 void execute_command(char *buffer, char **argv);
 void check_exit(char *buffer);
@@ -25,7 +25,6 @@ void check_builtins(char *buffer);
 
 void pprint(const char *format);
 int _strlen(const char *s);
-void read_line(char *buffer, size_t buff_size);
 char **argsarray(char *buffer);
 char *_strncpy(char *dest, char *src, int n);
 char *_strcpy(char *dest, char *src);

@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 
 	do
 	{
-		read_line(buffer, buff_size);
+		read_line(buffer, buff_size, argv);
 		remove_newline(buffer);
 		if (_strlen(buffer) == 0)
 		{

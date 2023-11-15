@@ -7,7 +7,7 @@
  *
  * Return: void
  */
-void read_line(char *buffer, size_t buff_size)
+void read_line(char *buffer, size_t buff_size, char **argv)
 {
 
 	if (isatty(fileno(stdin)))
@@ -15,17 +15,22 @@ void read_line(char *buffer, size_t buff_size)
 		/* live mode */
 		_prompt();
 		getline(&buffer, &buff_size, stdin);
+		if (feof(stdin))
+		{
+			printf("\n");
+			exit(EXIT_SUCCESS);
+		}
 	}
 	else
 	{
 		/* piped input */
 		write(STDIN_FILENO, "\n", 1);
 		getline(&buffer, &buff_size, stdin);
+		remove_newline(buffer);
+		check_builtins(buffer);
+		execute_command(buffer, argv);
+		exit(0);
+
 	}
 
-	if (feof(stdin))
-	{
-		printf("\n");
-		exit(EXIT_SUCCESS);
-	}
 }
