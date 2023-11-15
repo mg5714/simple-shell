@@ -7,29 +7,30 @@
  *
  * Return: void
  */
-void read_line(char *buffer, size_t buff_size)
+void read_line(char *buffer, size_t buff_size, char **argv)
 {
-	ssize_t bytes;
 
 	if (isatty(fileno(stdin)))
 	{
 		/* live mode */
 		_prompt();
 		getline(&buffer, &buff_size, stdin);
+		if (feof(stdin))
+		{
+			printf("\n");
+			exit(EXIT_SUCCESS);
+		}
 	}
 	else
 	{
 		/* piped input */
 		write(STDIN_FILENO, "\n", 1);
-		bytes = getline(&buffer, &buff_size, stdin);
-		if (bytes == -1)
-			exit(EXIT_FAILURE);
+		getline(&buffer, &buff_size, stdin);
+		remove_newline(buffer);
+		check_builtins(buffer);
+		execute_command(buffer, argv);
+		exit(0);
 
 	}
 
-	if (feof(stdin))
-	{
-		printf("\n");
-		exit(EXIT_SUCCESS);
-	}
 }

@@ -12,14 +12,18 @@ int main(int argc, char **argv)
 	size_t buff_size = BUFFER_SIZE;
 	char buffer[BUFFER_SIZE];
 
-	while (1)
+	do
 	{
-		read_line(buffer, buff_size);
+		read_line(buffer, buff_size, argv);
 		remove_newline(buffer);
-		/* printf("BUFFER: [%s]\n", buffer); */
+		if (_strlen(buffer) == 0)
+		{
+			fflush(stdin);
+			continue;
+		}
 		check_builtins(buffer);
 		execute_command(buffer, argv);
-	}
+	} while(1);
 	if (argc)
 	{}
 	return (0);

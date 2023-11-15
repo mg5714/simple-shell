@@ -61,7 +61,7 @@ void execute_command(char *buffer, char **argv)
 	}
 	else
 	{
-	  free(path);
+		free(path);
 		wait(&status);
 	}
 }
