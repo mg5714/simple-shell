@@ -1,6 +1,7 @@
 #include "shell.h"
 
 void print_env(void);
+int getstatus(int coef, char *buffer);
 
 /**
  * check_builtins - check for built in commands
@@ -9,22 +10,24 @@ void print_env(void);
  */
 void check_builtins(char *buffer)
 {
-	int i;
+	int i, status;
+	char *token;
 
+	token = _strtok(buffer, " ");
 	for (i = 0; buffer[i]; i++)
 	{
-		if (!_isalpha(buffer[i]))
-			continue;
-
-		if (_strcmp((buffer + i), "env") == 0)
+		if (_strcmp(token, "env") == 0)
 		{
 			print_env();
 			return;
 		}
 
-		if (_strcmp(buffer + i, "exit") == 0)
+		if (_strcmp(token, "exit") == 0)
 		{
-			exit(EXIT_SUCCESS);
+			/* status % 256 */
+			token = _strtok(NULL, " ");
+			status = _atoi(token);
+			exit(status % 256;
 		}
 
 		return;

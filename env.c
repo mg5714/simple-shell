@@ -14,10 +14,10 @@ char *_getenv(char *var)
 	for (i = 0; environ[i]; i++)
 	{
 		tmp = _strdup(environ[i]);
-		key = strtok(tmp, "=");
+		key = _strtok(tmp, "=");
 		if (_strcmp(key, var) == 0)
 	{
-		value = strtok(NULL, "\n");
+		value = _strtok(NULL, "\n");
 		env = _strdup(value);
 		free(tmp);
 		return (env);

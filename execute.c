@@ -34,11 +34,11 @@ void execute_command(char *buffer, char **argv)
 	int i;
 
 	i = 0;
-	token = strtok(buffer, " ");
+	token = _strtok(buffer, " ");
 	while (token != NULL)
 	{
 		args[i++] = token;
-		token = strtok(NULL, " ");
+		token = _strtok(NULL, " ");
 	}
 	args[i] = NULL;
 	path = get_path(args[0]);
