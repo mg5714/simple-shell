@@ -12,15 +12,13 @@ int main(int argc, char **argv)
 	size_t buff_size = BUFFER_SIZE;
 	char buffer[BUFFER_SIZE];
 
-	_prompt();
 	while (1)
 	{
 		read_line(buffer, buff_size);
 		remove_newline(buffer);
+		printf("BUFFER: [%s]\n", buffer);
 		check_builtins(buffer);
 		execute_command(buffer, argv);
-
-		_prompt();
 	}
 	if (argc)
 	{}

@@ -9,10 +9,27 @@
  */
 void read_line(char *buffer, size_t buff_size)
 {
-	getline(&buffer, &buff_size, stdin);
+	ssize_t bytes;
+
+	if (isatty(fileno(stdin)))
+	{
+		/* live mode */
+		_prompt();
+		getline(&buffer, &buff_size, stdin);
+	}
+	else
+	{
+		/* piped input */
+		write(STDIN_FILENO, "\n", 1);
+		bytes = getline(&buffer, &buff_size, stdin);
+		if (bytes == -1)
+			exit(EXIT_FAILURE);
+
+	}
+
 	if (feof(stdin))
 	{
-		pprint("\n");
+		printf("\n");
 		exit(EXIT_SUCCESS);
 	}
 }

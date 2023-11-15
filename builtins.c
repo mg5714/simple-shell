@@ -12,8 +12,10 @@ void check_builtins(char *buffer)
 {
 	int i, status = EXIT_SUCCESS;
 	char *token;
+	char bufcpy[BUFFER_SIZE / 2];
 
-	token = _strtok(buffer, " ");
+	_strcpy(bufcpy, buffer);
+	token = _strtok(bufcpy, " ");
 	for (i = 0; buffer[i]; i++)
 	{
 		if (_strcmp(token, "env") == 0)
