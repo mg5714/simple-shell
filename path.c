@@ -24,7 +24,7 @@ char *get_path(char *cmd)
 	if (!path)
 	return (NULL);
 
-	dir = strtok(path, ":");
+	dir = _strtok(path, ":");
 	while (dir != NULL)
 	{
 		path_copy = malloc(_strlen(dir) + _strlen(cmd) + 2);
@@ -39,11 +39,10 @@ char *get_path(char *cmd)
 				free(path);
 				return (path_copy);
 			}
-			
 			free(path_copy);
 			path_copy = NULL;
 		}
-		dir = strtok(NULL, ":");
+		dir = _strtok(NULL, ":");
 	}
 		free(path);
 		return (NULL);

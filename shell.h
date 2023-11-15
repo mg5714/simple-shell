@@ -31,6 +31,7 @@ char *_strncpy(char *dest, char *src, int n);
 char *_strcpy(char *dest, char *src);
 
 char *_strncat(char *dest, char *src, int n);
+char *_strtok(char *str, const char *delimiters);
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 void print_env(void);
@@ -39,4 +40,6 @@ char *_strdup(char *str);
 char *_strsep(char **stringp, const char *delim);
 char *_strpbrk(const char* str, const char* accept);
 int _isalpha(int c);
+int _isdigit(int c);
+int _atoi(char *s);
 #endif
