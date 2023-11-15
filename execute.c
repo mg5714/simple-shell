@@ -46,12 +46,12 @@ void execute_command(char *buffer, char **argv)
 		return;
 	}
 	pid = fork();
-	if (pid < 0)
-	{
-		perror("fork() error");
-		exit(EXIT_FAILURE);
-	}
-	else if (pid == 0)
+	 if (pid < 0)
+	 {
+	 	perror("fork() error");
+	 	exit(EXIT_FAILURE);
+	 }
+	else  if (pid == 0)
 	{
 		if (execve(path, args, environ) == -1)
 		{
