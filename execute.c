@@ -53,6 +53,7 @@ void execute_command(char *buffer, char **argv)
 	}
 	else if (pid == 0)
 	{
+		printf("[%s]:%i\n", buffer, _strlen(buffer));
 		if (execve(path, args, environ) == -1)
 		{
 			perror(argv[0]);
@@ -61,7 +62,7 @@ void execute_command(char *buffer, char **argv)
 	}
 	else
 	{
-	  free(path);
-		wait(&status);
+	  wait(&status);
 	}
+	free(path);
 }
