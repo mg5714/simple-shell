@@ -28,7 +28,7 @@ void execute_command(char *buffer, char **argv)
 	char *args[BUFFER_SIZE / 2];
 	pid_t pid;
 	char *token, *path;
-	int i;
+	int i, status;
 
 	i = 0;
 	token = _strtok(buffer, " ");
@@ -62,6 +62,6 @@ void execute_command(char *buffer, char **argv)
 	else
 	{
 	  free(path);
-		wait(NULL);
+		wait(&status);
 	}
 }

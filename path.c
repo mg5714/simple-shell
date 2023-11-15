@@ -28,12 +28,13 @@ char *get_path(char *cmd)
 	while (dir != NULL)
 	{
 		path_copy = malloc(_strlen(dir) + _strlen(cmd) + 2);
+		if (path_copy == NULL)
+		return (NULL);
 		if (path_copy)
 		{
 			_strcpy(path_copy, dir);
 			_strcat(path_copy, "/");
 			_strcat(path_copy, cmd);
-			stat(path_copy, &st);
 			if (stat(path_copy, &st) == 0)
 			{
 				free(path);
