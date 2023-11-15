@@ -16,7 +16,11 @@ int main(int argc, char **argv)
 	{
 		read_line(buffer, buff_size);
 		remove_newline(buffer);
-		printf("BUFFER: [%s]\n", buffer);
+		if (_strlen(buffer) == 0)
+		{
+			fflush(stdin);
+			continue;
+		}
 		check_builtins(buffer);
 		execute_command(buffer, argv);
 	}
