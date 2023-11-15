@@ -12,8 +12,7 @@ int main(int argc, char **argv)
 	size_t buff_size = BUFFER_SIZE;
 	char buffer[BUFFER_SIZE];
 
-	do
-	{
+	do {
 		read_line(buffer, buff_size, argv);
 		remove_newline(buffer);
 		if (_strlen(buffer) == 0)
@@ -23,7 +22,7 @@ int main(int argc, char **argv)
 		}
 		check_builtins(buffer);
 		execute_command(buffer, argv);
-	} while(1);
+	} while (1);
 	if (argc)
 	{}
 	return (0);
