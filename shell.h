@@ -10,7 +10,6 @@ extern char **environ;
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <errno.h>
 
 #define BUFFER_SIZE 10024
 #define PROMPT "$ "
@@ -25,7 +24,6 @@ void _prompt(void);
 void check_builtins(char *buffer);
 
 void pprint(const char *format);
-void rstrip(char *buffer);
 int _strlen(const char *s);
 char **argsarray(char *buffer);
 char *_strncpy(char *dest, char *src, int n);
