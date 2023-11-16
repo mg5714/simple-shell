@@ -9,6 +9,7 @@
  */
 void read_line(char *buffer, size_t buff_size, char **argv)
 {
+	ssize_t bytes;
 
 	if (isatty(fileno(stdin)))
 	{
@@ -25,10 +26,12 @@ void read_line(char *buffer, size_t buff_size, char **argv)
 	{
 		/* piped input */
 		write(STDIN_FILENO, "\n", 1);
-		getline(&buffer, &buff_size, stdin);
-		remove_newline(buffer);
-		check_builtins(buffer);
-		execute_command(buffer, argv);
+		while ((bytes = getline(&buffer, &buff_size, stdin)) > 0)
+		{
+			remove_newline(buffer);
+			check_builtins(buffer);
+			execute_command(buffer, argv);
+		}
 		exit(0);
 
 	}
