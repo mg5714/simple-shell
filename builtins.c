@@ -20,7 +20,7 @@ void check_builtins(char *buffer)
 	{
 		if (_strcmp(token, "env") == 0)
 		{
-			print_env();
+			/* print_env(); */
 			return;
 		}
 
@@ -29,24 +29,10 @@ void check_builtins(char *buffer)
 			/* status % 256 */
 			token = _strtok(NULL, " ");
 			if (token)
-				status = _atoi(token);
+			    status = _atoi(token);
 			exit(status % 256);
 		}
 
 		return;
 	}
-}
-
-/**
- * print_env - print the enviroment variables line by line
- * Return: void
- */
-void print_env(void)
-{
-	int i;
-
-	for (i = 0; environ[i] != NULL; i++)
-		printf("%s\n", environ[i]);
-
-	/* return; */
 }
