@@ -27,7 +27,7 @@ void execute_command(char *buffer, char **argv)
 {
 	char *args[BUFFER_SIZE / 2], *token, *path;
 	pid_t pid;
-	int i = 0, status, exitstat = EXIT_SUCCESS;
+	int i = 0, status, exitstat = EXIT_SUCCESS, index = 1;
 
 	token = _strtok(buffer, " ");
 	while (token != NULL)
@@ -39,8 +39,8 @@ void execute_command(char *buffer, char **argv)
 	path = get_path(args[0]);
 	if (!path)
 	{
-		printf("Command not found: %s\n", args[0]);
-		return;
+		fprintf(stderr, "%s: %d: %s: not found\n", argv[0], index++, args[0]);
+		exit(127);
 	}
 	pid = fork();
 	if (pid < 0)
