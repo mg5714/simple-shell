@@ -11,7 +11,7 @@ extern char **environ;
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 10024
 #define PROMPT "$ "
 
 void read_line(char *buffer, size_t buff_size, char **args);
