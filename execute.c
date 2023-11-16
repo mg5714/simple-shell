@@ -25,12 +25,10 @@ void *remove_newline(char *buffer)
  */
 void execute_command(char *buffer, char **argv)
 {
-	char *args[BUFFER_SIZE / 2];
+	char *args[BUFFER_SIZE / 2], *token, *path;
 	pid_t pid;
-	char *token, *path;
-	int i, status;
+	int i = 0, status, exitstat = EXIT_SUCCESS;
 
-	i = 0;
 	token = _strtok(buffer, " ");
 	while (token != NULL)
 	{
@@ -39,7 +37,6 @@ void execute_command(char *buffer, char **argv)
 	}
 	args[i] = NULL;
 	path = get_path(args[0]);
-
 	if (!path)
 	{
 		printf("Command not found: %s\n", args[0]);
@@ -56,12 +53,14 @@ void execute_command(char *buffer, char **argv)
 		if (execve(path, args, environ) == -1)
 		{
 			perror(argv[0]);
-			exit(EXIT_FAILURE);
+			exit(exitstat);
 		}
 	}
 	else
 	{
 		free(path);
-		wait(&status);
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			exit(WEXITSTATUS(status));
 	}
 }
