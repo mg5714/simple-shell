@@ -13,6 +13,7 @@ void rstrip(char *buffer);
 void read_line(char *buffer, size_t buff_size, char **argv)
 {
 	ssize_t bytes;
+	char cpy[BUFFER_SIZE / 2];
 	char *lstrip;
 
 	if (isatty(fileno(stdin)))
@@ -32,13 +33,15 @@ void read_line(char *buffer, size_t buff_size, char **argv)
 		write(STDIN_FILENO, "\n", 1);
 		while ((bytes = getline(&buffer, &buff_size, stdin)) > 0)
 		{
-			remove_newline(buffer);
-			for (lstrip = buffer; *lstrip == ' '; lstrip++)
+			_strcpy(cpy, buffer);
+			remove_newline(cpy);
+			for (lstrip = cpy; *lstrip == ' '; lstrip++)
 				;
 			if (_strlen(lstrip) == 0)
 				break;
 
 			rstrip(lstrip);
+			printf("LINE: [%s]\n", lstrip);
 			check_builtins(lstrip);
 			execute_command(lstrip, argv);
 		}

@@ -11,17 +11,22 @@ int main(int argc, char **argv)
 {
 	size_t buff_size = BUFFER_SIZE;
 	char buffer[BUFFER_SIZE];
+	char *lstrip;
 
 	do {
 		read_line(buffer, buff_size, argv);
 		remove_newline(buffer);
-		if (_strlen(buffer) == 0)
+		for (lstrip = buffer; *lstrip == ' '; lstrip++)
+			;
+
+		rstrip(lstrip);
+		if (_strlen(lstrip) == 0)
 		{
 			fflush(stdin);
 			continue;
 		}
-		check_builtins(buffer);
-		execute_command(buffer, argv);
+		check_builtins(lstrip);
+		execute_command(lstrip, argv);
 	} while (1);
 	if (argc)
 	{}
