@@ -39,24 +39,23 @@ void execute_command(char *buffer, char **argv)
 	}
 	args[i] = NULL;
 	path = get_path(args[0]);
-
 	if (!path)
 	{
-		printf("Command not found: %s\n", args[0]);
-		return;
+	  fprintf(stderr, "%s: %d: %s: not found\n", argv[0], 1, args[0]);
+		   exit(127);   /* return; */
 	}
 	pid = fork();
-	 if (pid < 0)
-	 {
-	 	perror("fork() error");
-	 	exit(EXIT_FAILURE);
-	 }
+	if (pid < 0)
+	{
+		perror("fork() error");
+		exit(EXIT_FAILURE);
+	}
 	else  if (pid == 0)
 	{
 		if (execve(path, args, environ) == -1)
 		{
 			perror(argv[0]);
-			exit(EXIT_FAILURE);
+			exit(127);
 		}
 	}
 	else
